@@ -6,7 +6,7 @@ In case of files it checks maximum of access time and modification. When it come
 
 ### Usage
 
-`bin/dirclean ~/Downloads`
+`bin/dirclean directory_path ...`
 
 ### Logs
 

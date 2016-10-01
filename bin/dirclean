@@ -6,7 +6,7 @@ RETENTION_TIME    = 30 * 24 * 60 * 60 # 30 days
 
 def show_help
   puts 'Removes files and folders that were not accessed for over 30 days'
-  puts 'usage: dirclean directory_path'
+  puts 'usage: dirclean directory_path ...'
 end
 
 def directory_contents(dir_path)
@@ -57,30 +57,33 @@ def remove_directory(dir_path)
   `rm -r "#{dir_path}"`
 end
 
-if ARGV.size != 1
+if ARGV.size < 1
   show_help
   exit
 end
 
 logger = Logger.new('/tmp/dirclean.log')
 
-directory_path     = ARGV.first
-directory_contents = directory_contents(directory_path)
+ARGV.each do |directory_path|
+  cleanup_start_time = Time.new
 
-logger.info("Analyzing #{directory_contents.size} entries inside '#{directory_path}'")
+  directory_contents = directory_contents(directory_path)
 
-directory_contents.each do |file_name|
-  if File.directory?(file_name)
-    if directory_outdated?(file_name)
-      remove_directory(file_name)
-      logger.info("Removed '#{file_name}' directory")
-    end
-  else
-    if file_outdated?(file_name)
-      remove_file(file_name)
-      logger.info("Removed '#{file_name}' file")
+  logger.info("Analyzing #{directory_contents.size} entries inside '#{directory_path}'")
+
+  directory_contents.each do |file_name|
+    if File.directory?(file_name)
+      if directory_outdated?(file_name)
+        remove_directory(file_name)
+        logger.info("Removed '#{file_name}' directory")
+      end
+    else
+      if file_outdated?(file_name)
+        remove_file(file_name)
+        logger.info("Removed '#{file_name}' file")
+      end
     end
   end
-end
 
-logger.info("Cleanup finished in #{Time.new - SCRIPT_START_TIME} seconds")
+  logger.info("Cleanup finished in #{Time.new - cleanup_start_time} seconds")
+end
