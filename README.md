@@ -6,8 +6,8 @@ In case of files it checks maximum of access time and modification. When it come
 
 ### Usage
 
-`./dirclean ~/Downloads`
+`bin/dirclean ~/Downloads`
 
 ### Logs
 
-Script creates `dirclean.log` file and saves the track of its activity there.
+Script creates `/tmp/dirclean.log` file and saves the track of its activity there.

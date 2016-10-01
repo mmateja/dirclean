@@ -6,7 +6,7 @@ RETENTION_TIME    = 30 * 24 * 60 * 60 # 30 days
 
 def show_help
   puts 'Removes files and folders that were not accessed for over 30 days'
-  puts "usage: #{__FILE__} directory"
+  puts 'usage: dirclean directory_path'
 end
 
 def directory_contents(dir_path)
@@ -62,7 +62,7 @@ if ARGV.size != 1
   exit
 end
 
-logger = Logger.new(File.join(File.dirname(__FILE__), 'dirclean.log'))
+logger = Logger.new('/tmp/dirclean.log')
 
 directory_path     = ARGV.first
 directory_contents = directory_contents(directory_path)
