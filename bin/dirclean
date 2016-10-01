@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 require 'logger'
 
 SCRIPT_START_TIME = Time.new
@@ -57,7 +58,7 @@ def remove_directory(dir_path)
   `rm -r "#{dir_path}"`
 end
 
-if ARGV.size < 1
+if ARGV.empty?
   show_help
   exit
 end
@@ -72,6 +73,7 @@ ARGV.each do |directory_path|
   logger.info("Analyzing #{directory_contents.size} entries inside '#{directory_path}'")
 
   directory_contents.each do |file_name|
+    # rubocop:disable Style/IfInsideElse
     if File.directory?(file_name)
       if directory_outdated?(file_name)
         remove_directory(file_name)
@@ -83,6 +85,7 @@ ARGV.each do |directory_path|
         logger.info("Removed '#{file_name}' file")
       end
     end
+    # rubocop:enable Style/IfInsideElse
   end
 
   logger.info("Cleanup finished in #{Time.new - cleanup_start_time} seconds")

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mmateja/dirclean.svg?branch=master)](https://travis-ci.org/mmateja/dirclean)
+
 ### Description
 
 The script removes all files and directories inside a provided directory path that were not used for over 30 days.
