@@ -18,6 +18,9 @@ module DirClean
       logger.info("Analyzing #{directory_entries.size} entries inside '#{directory_path}'")
       directory_entries.each { |file_name| delete_entry_if_outdated(file_name, current_time) }
       logger.info("Cleanup finished in #{Time.now - current_time} seconds")
+    rescue => e
+      logger.error("Unexpected error occurred: #{e.message}")
+      raise e
     end
 
     private
