@@ -6,7 +6,7 @@ describe DirClean::Cleaner do
 
   describe '#clean' do
     class DummyLogger
-      def info(_)
+      def info
       end
     end
 

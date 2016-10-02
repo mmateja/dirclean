@@ -15,11 +15,11 @@ module DirClean
 
     def clean(directory_path, current_time = Time.now)
       directory_entries = file_system_wrapper.directory_contents(directory_path)
-      logger.info("Analyzing #{directory_entries.size} entries inside '#{directory_path}'")
+      logger.info { "Analyzing #{directory_entries.size} entries inside '#{directory_path}'" }
       directory_entries.each { |file_name| delete_entry_if_outdated(file_name, current_time) }
-      logger.info("Cleanup finished in #{Time.now - current_time} seconds")
+      logger.info { "Cleanup finished in #{Time.now - current_time} seconds" }
     rescue => e
-      logger.error("Unexpected error occurred: #{e.message}")
+      logger.error { "Unexpected error occurred: #{e.message}" }
       raise e
     end
 
@@ -38,13 +38,13 @@ module DirClean
     def delete_directory_if_outdated(file_name, current_time)
       return unless directory_outdated?(file_name, current_time)
       file_system_wrapper.remove_directory(file_name)
-      logger.info("Removed '#{file_name}' directory")
+      logger.info { "Removed '#{file_name}' directory" }
     end
 
     def delete_file_if_outdated(file_name, current_time)
       return unless file_outdated?(file_name, current_time)
       file_system_wrapper.remove_file(file_name)
-      logger.info("Removed '#{file_name}' file")
+      logger.info { "Removed '#{file_name}' file" }
     end
 
     def directory_outdated?(dir_path, current_time)
