@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 2.0'
   gem.executables << 'dirclean'
 
-  gem.add_development_dependency 'rake', '~> 11.3'
-  gem.add_development_dependency 'minitest', '~> 5.9'
-  gem.add_development_dependency 'rubocop', '~> 0.43'
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'minitest'
+  gem.add_development_dependency 'rubocop'
 end
