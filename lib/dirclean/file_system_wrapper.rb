@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module DirClean
   class FileSystemWrapper
     def directory_contents(dir_path)

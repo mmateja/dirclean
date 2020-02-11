@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'spec_helper'
 
 describe DirClean::Cleaner do
@@ -6,8 +7,7 @@ describe DirClean::Cleaner do
 
   describe '#clean' do
     class DummyLogger
-      def info
-      end
+      def info; end
     end
 
     let(:file_system_wrapper) { MiniTest::Mock.new }

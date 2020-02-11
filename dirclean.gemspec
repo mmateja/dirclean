@@ -1,6 +1,6 @@
-# coding: utf-8
 # frozen_string_literal: true
-lib = File.expand_path('../lib', __FILE__)
+
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'dirclean/version'
@@ -16,10 +16,10 @@ Gem::Specification.new do |gem|
   gem.homepage              = 'https://github.com/mmateja/dirclean'
   gem.license               = 'MIT'
   gem.require_paths         = ['lib']
-  gem.required_ruby_version = '>= 2.0'
+  gem.required_ruby_version = '>= 2.3'
   gem.executables << 'dirclean'
 
-  gem.add_development_dependency 'rake'
   gem.add_development_dependency 'minitest'
+  gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rubocop'
 end

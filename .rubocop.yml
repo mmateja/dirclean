@@ -1,7 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.3
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   Enabled: true
 
@@ -10,3 +10,8 @@ Style/Documentation:
 
 Metrics/AbcSize:
   Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/*'
+
